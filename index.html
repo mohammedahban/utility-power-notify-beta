@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق إشعارات الكهرباء - اختبار مغلق</title>
+    <meta name="description" content="انضم لاختبار تطبيق إشعارات الكهرباء على Google Play">
+    <meta property="og:title" content="تطبيق إشعارات الكهرباء - اختبار مغلق">
+    <meta property="og:description" content="انضم الآن لاختبار التطبيق على Google Play">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/4F46E5/FFFFFF?text=تطبيق+إشعارات+الكهرباء">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            border-radius: 28px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 25px 70px rgba(99, 102, 241, 0.6); }
+        }
+
+        .app-icon svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(245, 158, 11, 0.2));
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
+            to { box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); }
+        }
+
+        .warning-banner .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .warning-banner h3 {
+            color: #fca5a5;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .warning-banner p {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Steps */
+        .steps-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 30px 0 20px;
+            color: #c4b5fd;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .step-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .step-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Email Match Visual */
+        .email-match {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .email-match h3 {
+            color: #6ee7b7;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .email-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .email-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 15px 25px;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .email-box .icon {
+            font-size: 24px;
+        }
+
+        .email-box .label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 2px;
+        }
+
+        .email-box .email {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            direction: ltr;
+        }
+
+        .arrow-down {
+            font-size: 30px;
+            color: #6ee7b7;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .match-result {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 16px;
+            padding: 15px 25px;
+            width: 100%;
+            max-width: 300px;
+            font-weight: 800;
+            font-size: 16px;
+            animation: successPulse 2s infinite;
+        }
+
+        @keyframes successPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+        }
+
+        .wrong-example {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .wrong-example h4 {
+            color: #fca5a5;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .wrong-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-box {
+            background: rgba(239, 68, 68, 0.15);
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            border-radius: 16px;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-box .email {
+            direction: ltr;
+            font-size: 14px;
+        }
+
+        .wrong-result {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 16px;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 280px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 800;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: ctaPulse 2s infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 15px 50px rgba(99, 102, 241, 0.6); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .cta-note {
+            margin-top: 15px;
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 26px; }
+            .step-card { padding: 20px; }
+            .cta-button { padding: 16px 30px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero fade-in">
+            <div class="app-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+            </div>
+            <div class="badge">🔒 اختبار مغلق - Closed Testing</div>
+            <h1>تطبيق إشعارات الكهرباء</h1>
+            <p>تطبيق ذكي يُرسل لك إشعارات فورية عن جداول ومواعيد انقطاع وعودة الكهرباء في منطقتك، لتحظى بتجربة استخدام سلسة ومنظمة.</p>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning-banner fade-in delay-1">
+            <div class="icon">⚠️</div>
+            <h3>تنبيه مهم جداً!</h3>
+            <p>التطبيق حالياً في مرحلة <strong>الاختبار المغلق</strong> على Google Play. لتحميله، يجب أن تنضم أولاً إلى مجموعة الاختبار، ثم تنتظر بضع دقائق حتى يظهر لك التطبيق في متجر Google Play.</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-title fade-in delay-2">📋 خطوات الانضمام للاختبار</div>
+
+        <div class="step-card fade-in delay-2">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h3>انضم لمجموعة الاختبار</h3>
+            </div>
+            <p>اضغط على الزر في أسفل الصفحة لفتح رابط مجموعة Google Group الخاصة بالاختبار، ثم اضغط على "انضمام للمجموعة".</p>
+        </div>
+
+        <div class="step-card fade-in delay-3">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h3>انتظر التفعيل</h3>
+            </div>
+            <p>بعد الانضمام، انتظر من <strong>5 إلى 15 دقيقة</strong> حتى يتم تفعيل صلاحيتك كمختبر في نظام Google Play.</p>
+        </div>
+
+        <div class="step-card fade-in delay-4">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h3>حمّل التطبيق من Google Play</h3>
+            </div>
+            <p>افتح تطبيق Google Play على هاتفك، وابحث عن "تطبيق إشعارات الكهرباء"، أو استخدم الرابط المباشر الذي سيُرسل لك.</p>
+        </div>
+
+        <!-- Email Match -->
+        <div class="email-match fade-in delay-5">
+            <h3>🔐 يجب أن يكون البريد الإلكتروني متطابقاً!</h3>
+            <p style="margin-bottom:20px; color:rgba(255,255,255,0.7);">هذا أهم شرط للنجاح. يجب أن تستخدم <strong>نفس حساب Gmail</strong> في الخطوتين:</p>
+
+            <div class="email-flow">
+                <div class="email-box">
+                    <span class="icon">📧</span>
+                    <div>
+                        <div class="label">مجموعة الاختبار</div>
+                        <div class="email">yourname@gmail.com</div>
+                    </div>
+                </div>
+                <div class="arrow-down">⬇️</div>
+                <div class="email-box">
+                    <span class="icon">📱</span>
+                    <div>
+                        <div class="label">Google Play على هاتفك</div>
+                        <div class="email">yourname@gmail.com</div>
+                    </div>
+                </div>
+                <div class="arrow-down">⬇️</div>
+                <div class="match-result">
+                    ✅ يمكنك تحميل التطبيق بنجاح!
+                </div>
+            </div>
+
+            <div class="wrong-example">
+                <h4>❌ مثال على خطأ شائع:</h4>
+                <div class="wrong-flow">
+                    <div class="wrong-box">
+                        <span class="icon">📧</span>
+                        <div class="email">name1@gmail.com</div>
+                    </div>
+                    <div class="wrong-box">
+                        <span class="icon">📱</span>
+                        <div class="email">name2@gmail.com</div>
+                    </div>
+                    <div class="wrong-result">
+                        ❌ لن يظهر التطبيق لك في Google Play!
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top:20px; color:rgba(255,255,255,0.6); font-size:14px;">
+                💡 <strong>نصيحة:</strong> تأكد من الحساب المسجل في Google Play على هاتفك بالذهاب إلى: <br>
+                <span dir="ltr">Google Play → Profile → Manage accounts on this device</span>
+            </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section fade-in delay-5">
+            <a href="https://groups.google.com/u/2/g/meta-telsi-aden" class="cta-button" target="_blank">
+                <span>🚀</span>
+                <span>انضم لمجموعة الاختبار الآن</span>
+            </a>
+            <p class="cta-note">سيتم فتح رابط مجموعة Google Group في نافذة جديدة</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>تطبيق إشعارات الكهرباء © 2026</p>
+            <p style="margin-top:5px;">شكراً لمساعدتنا في اختبار التطبيق! 🙏</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particle.style.width = (2 + Math.random() * 4) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
