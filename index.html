@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق إشعارات الكهرباء - اختبار مغلق</title>
     <meta name="description" content="انضم لاختبار تطبيق إشعارات الكهرباء على متجر جوجل">
-    <meta property="og:title" content="تطبيق إشعارات الكهرباء - اختبار مغلق">
-    <meta property="og:description" content="انضم الآن لاختبار التطبيق على متجر جوجل">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Tajawal', sans-serif;
             background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
@@ -18,280 +15,156 @@
             color: #fff;
             overflow-x: hidden;
         }
-
-        .particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            animation: float 15s infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
-            z-index: 1;
         }
-
         .hero {
             text-align: center;
-            padding: 40px 0 25px;
+            padding: 30px 0 20px;
         }
         .app-icon {
-            width: 110px; height: 110px;
+            width: 90px; height: 90px;
             background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-            border-radius: 26px;
-            margin: 0 auto 18px;
+            border-radius: 22px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 25px 70px rgba(99, 102, 241, 0.6); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-        .app-icon svg { width: 55px; height: 55px; }
-
+        .app-icon svg { width: 45px; height: 45px; }
         .badge {
             display: inline-block;
             background: linear-gradient(90deg, #f59e0b, #ef4444);
             color: #fff;
-            padding: 6px 18px;
+            padding: 5px 16px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .hero h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background: linear-gradient(90deg, #fff, #c4b5fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         .hero p {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(255,255,255,0.7);
             line-height: 1.7;
         }
-
-        .steps-title {
+        .section-title {
             text-align: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             margin: 25px 0 15px;
             color: #c4b5fd;
         }
-
         .step-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 22px;
+            border-radius: 20px;
             padding: 22px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             transition: transform 0.3s;
         }
         .step-card:hover { transform: translateY(-3px); }
-
         .step-header {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             margin-bottom: 12px;
         }
         .step-number {
-            width: 44px; height: 44px;
+            width: 40px; height: 40px;
             background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             flex-shrink: 0;
         }
-        .step-header h3 { font-size: 17px; font-weight: 700; }
+        .step-header h3 { font-size: 16px; font-weight: 700; }
         .step-card p {
             color: rgba(255,255,255,0.7);
             font-size: 14px;
             line-height: 1.8;
+            margin-bottom: 15px;
         }
         .step-card p strong { color: #fff; }
-
-        .warning-box {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(245, 158, 11, 0.15));
-            border: 2px solid rgba(239, 68, 68, 0.4);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        .warning-box .icon { font-size: 36px; margin-bottom: 8px; }
-        .warning-box h3 { color: #fca5a5; font-size: 17px; margin-bottom: 8px; }
-        .warning-box p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; }
-
-        .email-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px;
-            padding: 22px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        .email-section h3 { color: #6ee7b7; font-size: 17px; margin-bottom: 15px; }
-
-        .email-flow {
-            display: flex;
-            flex-direction: column;
+        .step-btn {
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-        }
-        .email-box {
-            background: rgba(255,255,255,0.08);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 14px;
-            padding: 14px 22px;
-            width: 100%;
-            max-width: 280px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .email-box .icon { font-size: 22px; }
-        .email-box .label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
-        .email-box .email { font-size: 14px; font-weight: 700; color: #fff; direction: ltr; }
-        .arrow-down { font-size: 26px; color: #6ee7b7; animation: bounce 1s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .match-result {
-            background: linear-gradient(135deg, #10b981, #059669);
-            border-radius: 14px;
-            padding: 12px 22px;
-            width: 100%;
-            max-width: 280px;
-            font-weight: 800;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 50px;
             font-size: 15px;
-        }
-
-        .wrong-example {
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px dashed rgba(255,255,255,0.2);
-        }
-        .wrong-example h4 { color: #fca5a5; font-size: 14px; margin-bottom: 12px; }
-        .wrong-box {
-            background: rgba(239, 68, 68, 0.12);
-            border: 2px solid rgba(239, 68, 68, 0.35);
-            border-radius: 14px;
-            padding: 12px 18px;
+            font-weight: 800;
+            transition: transform 0.3s, box-shadow 0.3s;
             width: 100%;
-            max-width: 260px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
+            justify-content: center;
         }
-        .wrong-box .email { direction: ltr; font-size: 13px; font-weight: 700; }
-        .wrong-result {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            border-radius: 14px;
-            padding: 12px 18px;
-            width: 100%;
-            max-width: 260px;
-            font-weight: 700;
-            font-size: 13px;
-        }
+        .step-btn:hover { transform: translateY(-2px); }
+        .btn-group { background: linear-gradient(135deg, #6366f1, #a855f7); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4); }
+        .btn-play { background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 8px 30px rgba(34, 197, 94, 0.3); }
 
-        .error-screenshot {
-            background: rgba(255,255,255,0.05);
+        .warn-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(245, 158, 11, 0.12));
             border: 2px solid rgba(239, 68, 68, 0.4);
             border-radius: 20px;
             padding: 20px;
             margin: 15px 0;
-            text-align: center;
         }
-        .error-screenshot h3 {
-            color: #fca5a5;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-        .error-screenshot .screenshot {
+        .warn-card h3 { color: #fca5a5; font-size: 16px; margin-bottom: 10px; text-align: center; }
+        .warn-card p { color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.8; text-align: center; margin-bottom: 15px; }
+        .warn-card img {
             width: 100%;
-            max-width: 500px;
             border-radius: 12px;
             border: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 12px;
         }
-        .error-screenshot .caption {
-            margin-top: 12px;
+        .warn-card .caption {
+            text-align: center;
             color: rgba(255,255,255,0.6);
             font-size: 13px;
             line-height: 1.7;
         }
-        .error-screenshot .caption strong { color: #fca5a5; }
+        .warn-card .caption strong { color: #fca5a5; }
 
-        .cta-section { text-align: center; padding: 25px 0; }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: #fff;
-            text-decoration: none;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 17px;
-            font-weight: 800;
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
-            transition: transform 0.3s;
-            margin-bottom: 10px;
-        }
-        .cta-button:hover { transform: translateY(-3px) scale(1.02); }
-        .cta-note { color: rgba(255,255,255,0.5); font-size: 12px; }
-
-        .play-link-section {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            border-radius: 20px;
-            padding: 22px;
-            margin: 15px 0;
+        .email-tip {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 15px;
             text-align: center;
         }
-        .play-link-section h3 { color: #86efac; font-size: 16px; margin-bottom: 12px; }
-        .play-link-section p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; margin-bottom: 15px; }
-        .play-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 800;
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
-            transition: transform 0.3s;
+        .email-tip h4 { color: #6ee7b7; font-size: 15px; margin-bottom: 8px; }
+        .email-tip p { color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.8; }
+        .email-tip .example {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 13px;
         }
-        .play-link-btn:hover { transform: translateY(-3px); }
+        .email-tip .example .ok { color: #6ee7b7; font-weight: 700; }
+        .email-tip .example .bad { color: #fca5a5; font-weight: 700; }
+        .email-tip .example .mail { direction: ltr; display: inline-block; }
 
         .footer {
             text-align: center;
@@ -299,33 +172,26 @@
             color: rgba(255,255,255,0.4);
             font-size: 12px;
         }
-
         .fade-in {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeInUp 0.7s forwards;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
         }
         @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
         }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
+        .d1 { animation-delay: 0.1s; }
+        .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; }
+        .d4 { animation-delay: 0.4s; }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 24px; }
+            .hero h1 { font-size: 22px; }
             .step-card { padding: 18px; }
-            .cta-button { padding: 14px 26px; font-size: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-
     <div class="container">
-        <!-- Hero -->
         <div class="hero fade-in">
             <div class="app-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -334,125 +200,66 @@
             </div>
             <div class="badge">🔒 اختبار مغلق</div>
             <h1>تطبيق إشعارات الكهرباء</h1>
-            <p>تطبيق ذكي يرسل لك إشعارات فورية عن جداول انقطاع وعودة الكهرباء في منطقتك.</p>
+            <p>تطبيق ذكي يرسل لك إشعارات فورية عن جداول انقطاع وعودة الكهرباء.</p>
         </div>
 
-        <!-- Steps -->
-        <div class="steps-title fade-in delay-1">📋 خطوات الاختبار</div>
+        <div class="section-title fade-in d1">📋 خطوات الاختبار</div>
 
-        <div class="step-card fade-in delay-1">
+        <!-- Step 1 -->
+        <div class="step-card fade-in d1">
             <div class="step-header">
                 <div class="step-number">1</div>
                 <h3>انضم لمجموعة الاختبار</h3>
             </div>
-            <p>اضغط الزر في الأسفل وانضم لمجموعة Google Group. <strong>انتظر 5-15 دقيقة</strong> حتى يتم تفعيل صلاحيتك.</p>
+            <p>اضغط الزر أدناه وانضم لمجموعة Google Group. <strong>انتظر 5-15 دقيقة</strong> حتى يتم تفعيل صلاحيتك.</p>
+            <a href="https://groups.google.com/u/2/g/meta-telsi-aden" class="step-btn btn-group" target="_blank">
+                <span>🚀</span>
+                <span>انضم للمجموعة الآن</span>
+            </a>
         </div>
 
-        <div class="step-card fade-in delay-2">
+        <!-- Step 2 -->
+        <div class="step-card fade-in d2">
             <div class="step-header">
                 <div class="step-number">2</div>
-                <h3>افتح رابط التطبيق على متجر جوجل</h3>
+                <h3>افتح التطبيق في متجر جوجل</h3>
             </div>
-            <p>بعد الانضمام، اضغط على رابط التطبيق في الأسفل. إذا ظهر لك التطبيق = نجاح! إذا ظهرت رسالة "لم يتم العثور على الرابط" = الإيميلات غير متطابقة.</p>
-        </div>
-
-        <div class="step-card fade-in delay-3">
-            <div class="step-header">
-                <div class="step-number">3</div>
-                <h3>حمّل التطبيق</h3>
-            </div>
-            <p>إذا ظهر لك التطبيق في متجر جوجل، اضغط "تثبيت" وابدأ الاستخدام.</p>
-        </div>
-
-        <!-- Email Match -->
-        <div class="email-section fade-in delay-4">
-            <h3>🔐 يجب تطابق الإيميل!</h3>
-            <p style="margin-bottom:15px; color:rgba(255,255,255,0.7); font-size:14px;">
-                يجب أن يكون الإيميل الذي انضميت به في مجموعة التطبيق وإيميل متجر جوجل متطابقين. إذا كانا غير متطابقين فسوف تظهر لك الرسالة التالية:
-            </p>
-
-            <div class="email-flow">
-                <div class="email-box">
-                    <span class="icon">📧</span>
-                    <div>
-                        <div class="label">مجموعة الاختبار</div>
-                        <div class="email">yourname@gmail.com</div>
-                    </div>
-                </div>
-                <div class="arrow-down">⬇️</div>
-                <div class="email-box">
-                    <span class="icon">📱</span>
-                    <div>
-                        <div class="label">متجر جوجل على هاتفك</div>
-                        <div class="email">yourname@gmail.com</div>
-                    </div>
-                </div>
-                <div class="arrow-down">⬇️</div>
-                <div class="match-result">✅ يمكنك تحميل التطبيق</div>
-            </div>
-
-            <div class="wrong-example">
-                <h4>❌ مثال على الخطأ:</h4>
-                <div class="wrong-box">
-                    <span class="icon">📧</span>
-                    <div class="email">name1@gmail.com</div>
-                </div>
-                <div class="wrong-box">
-                    <span class="icon">📱</span>
-                    <div class="email">name2@gmail.com</div>
-                </div>
-                <div class="wrong-result">❌ لن يظهر التطبيق لك!</div>
-            </div>
-        </div>
-
-        <!-- Error Screenshot -->
-        <div class="error-screenshot fade-in delay-5">
-            <h3>⚠️ إذا ظهرت لك هذه الرسالة:</h3>
-            <img src="error_screenshot.jpg" alt="رسالة خطأ من متجر جوجل" class="screenshot">
-            <div class="caption">
-                <strong>"عذراً، لم يتم العثور على الرابط المطلوب على هذا الخادم"</strong><br>
-                هذا يعني أن إيميلك في متجر جوجل <strong>غير مطابق</strong> للإيميل الذي انضميت به في المجموعة.<br>
-                تأكد من تسجيل الدخول في متجر جوجل بنفس الإيميل.
-            </div>
-        </div>
-
-        <!-- Play Store Link -->
-        <div class="play-link-section fade-in delay-5">
-            <h3>🛒 رابط التطبيق على متجر جوجل</h3>
-            <p>بعد الانضمام للمجموعة والانتظار 5-15 دقيقة، اضغط هنا لفتح التطبيق:</p>
-            <a href="https://play.google.com/store/apps/details?id=com.onspace.appfea5cdd7" class="play-link-btn" target="_blank">
+            <p>بعد الانتظار، اضغط الزر أدناه. إذا ظهر لك التطبيق = نجاح! إذا ظهرت رسالة "لم يتم العثور على الرابط" = الإيميلات غير متطابقة.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.onspace.appfea5cdd7" class="step-btn btn-play" target="_blank">
                 <span>📲</span>
                 <span>فتح التطبيق في متجر جوجل</span>
             </a>
         </div>
 
-        <!-- CTA -->
-        <div class="cta-section fade-in delay-5">
-            <a href="https://groups.google.com/u/2/g/meta-telsi-aden" class="cta-button" target="_blank">
-                <span>🚀</span>
-                <span>انضم لمجموعة الاختبار</span>
-            </a>
-            <p class="cta-note">سيفتح رابط مجموعة Google Group في نافذة جديدة</p>
+        <!-- Warning -->
+        <div class="warn-card fade-in d3">
+            <h3>⚠️ إذا ظهرت لك هذه الرسالة:</h3>
+            <img src="error_screenshot.jpg" alt="رسالة خطأ من متجر جوجل">
+            <div class="caption">
+                <strong>"عذراً، لم يتم العثور على الرابط المطلوب على هذا الخادم"</strong><br>
+                هذا يعني أن إيميل متجر جوجل <strong>غير مطابق</strong> للإيميل الذي انضميت به في المجموعة.
+            </div>
+
+            <div class="email-tip">
+                <h4>🔐 يجب تطابق الإيميل!</h4>
+                <p>يجب أن يكون الإيميل الذي انضميت به في مجموعة التطبيق وإيميل متجر جوجل متطابقين.</p>
+                <div class="example">
+                    <div class="ok">✅ صحيح:</div>
+                    <div>المجموعة: <span class="mail">name@gmail.com</span></div>
+                    <div>متجر جوجل: <span class="mail">name@gmail.com</span></div>
+                </div>
+                <div class="example">
+                    <div class="bad">❌ خاطئ:</div>
+                    <div>المجموعة: <span class="mail">name1@gmail.com</span></div>
+                    <div>متجر جوجل: <span class="mail">name2@gmail.com</span></div>
+                </div>
+            </div>
         </div>
 
-        <div class="footer">
+        <div class="footer fade-in d4">
             <p>تطبيق إشعارات الكهرباء © 2026</p>
             <p style="margin-top:5px;">شكراً لمساعدتنا في الاختبار! 🙏</p>
         </div>
     </div>
-
-    <script>
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 25; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDelay = Math.random() * 15 + 's';
-            p.style.animationDuration = (10 + Math.random() * 10) + 's';
-            p.style.width = (2 + Math.random() * 4) + 'px';
-            p.style.height = p.style.width;
-            particlesContainer.appendChild(p);
-        }
-    </script>
 </body>
 </html>
